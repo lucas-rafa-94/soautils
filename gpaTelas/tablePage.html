@@ -69,7 +69,7 @@
                   <div ng-show="editingData[product.linha]">{{product.linha}}</div>
                 </td>
                 <td>
-                  <div ng-hide="editingData[product.linha]">{{product.enviar}}</div>
+                  <div ng-hide="editingData[product.linha]"><input class="form-check-input" type="checkbox" ng-model="product.enviar"></div>
                   <div ng-show="editingData[product.linha]"><input class="form-check-input" type="checkbox" ng-model="product.enviar"></div>
                 </td>
                 <td>
