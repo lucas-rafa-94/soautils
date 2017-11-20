@@ -1,7 +1,7 @@
 # Projeto soautils
 
-#Telas Mock angular/html
-Diretório 
+##Telas Mock angular/html - 
+Diretório gpatelas
 
-#Projeto Workaround Cors SoaCS
+#Projeto Workaround Cors SoaCS -
 Diretório app
