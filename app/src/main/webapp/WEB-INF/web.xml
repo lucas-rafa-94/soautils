@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>OTD</display-name>
   <filter>
   	<filter-name>CorsFilter</filter-name>
   	<filter-class>br.com.cors.CorsFilter</filter-class>
@@ -22,10 +22,5 @@
   	<servlet-name>CorsServlet</servlet-name>
   	<url-pattern>/*</url-pattern>
   </servlet-mapping>
-  
-  
-  
-  
-  
-  
+
 </web-app>

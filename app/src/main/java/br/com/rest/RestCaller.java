@@ -11,32 +11,29 @@ import br.com.utils.Helper;
 public class RestCaller {
 
 	 public static String [] restCaller(String auth, String uri, String method,String contentType ,String payload) throws Exception {
-		
 		 ClientResponse response = null;
 		 WebResource webResource = null;
 		 Client client = null;
 		 String credentials [] = new String [2];
 		 String output [] = new String [2];
-		 
 		 try {
-			 
-	        credentials = Helper.returnCredentials(auth);
+		 	credentials = Helper.returnCredentials(auth);
 	     	HTTPBasicAuthFilter authFilter = new HTTPBasicAuthFilter(credentials[0], credentials[1]);
 	    	    client = Client.create();
 	    	    client.addFilter(authFilter);
-	    	        
 	    	       webResource = client.
 	                    resource(Helper.URI_SERVER + uri);
+			 System.out.println(Helper.URI_SERVER + uri);
 	    	       if(method.equals("GET")) {
 	        	    response = webResource.accept(contentType)
 	                    .get(ClientResponse.class);
 	    	       }else if (method.equals("POST")) {
 	    	    	   	 if(contentType.equals("application/x-www-form-urlencoded")) {
 	    	    	   		MultivaluedMapImpl formData = Helper.urlEncodedForm(payload);
-	    	    	   		response = webResource.header("Content-Type", contentType)
+	    	    	   		response = webResource.header("Content-Type", contentType).accept("application/json")
 	    	   	                    .post(ClientResponse.class, formData);
 	    	    	   	}else {
-	    	    	    response = webResource.accept(contentType)
+	    	    	    response = webResource.header("Content-Type", contentType)
 	   	                    .post(ClientResponse.class, payload);
 	    	    	   	}
 	    	       }else if (method.equals("PUT")){
@@ -47,14 +44,13 @@ public class RestCaller {
 	    	    	   			response = webResource.header("Content-Type", contentType)
 	    	   	                    .post(ClientResponse.class, formData);
 	    	    	   		}else {
-	    	    	   			response = webResource.accept(contentType)
+	    	    	   			response = webResource.header("Content-Type", contentType)
 	   	                    .post(ClientResponse.class, payload);
 	    	    	   		}
 	    	       }
-	        	    output[0] = Integer.toString(response.getStatus());
-	            output[1] = Helper.callResponses(response);
-	           
-	            
+
+	    	       output[0] = Integer.toString(response.getStatus());
+	               output[1] = Helper.callResponses(response);
 	         } catch (Exception e) {
 	            e.printStackTrace();
 	        } finally {

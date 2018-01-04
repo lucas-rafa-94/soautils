@@ -2,14 +2,12 @@ package br.com.utils;
 
 import java.nio.charset.Charset;
 import java.util.Base64;
-
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 public class Helper {
 	
-	public final static String URI_SERVER = "http://129.144.158.115/";
-	
+	public final static String URI_SERVER = "http://oc-129-144-158-115.compute.oraclecloud.com";
 	public static String [] returnCredentials(String auth) {
 		
 		String[] values = new String [2];
@@ -27,7 +25,6 @@ public class Helper {
 	
 	public static String callResponses (ClientResponse response) {
 		String responsePayload = null;
-		
 		if (response.getStatus() == 401) {
 			responsePayload =  "{\"status\": \"Unauthorized\"}";
         }
@@ -35,6 +32,7 @@ public class Helper {
 	    	    responsePayload =  "{\"status\": \"Page Not Found\"}";
         }
 		else if (response.getStatus() >= 500){
+
 	        	responsePayload =  "{\"status\": \"Internal Server Error\"}";
         }
 		else if (response.getStatus() == 400){
@@ -55,8 +53,10 @@ public class Helper {
         MultivaluedMapImpl formData = new MultivaluedMapImpl();
 		for(int i = 0; i < payloadVector.length; i++) {
 			String[] v = payloadVector[i].split("=");
-			formData.add(v[i].split("=")[0], v[1]);
+			formData.add(v[0], v[1]);
 		}
 		return formData;
 	}
+
+
 }
