@@ -22,18 +22,20 @@ public class CorsServlet extends HttpServlet {
 		Map<String,String[]> responseMap =  request.getParameterMap();
 		response.setContentType("application/json; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
+
 		if(request.getParameterMap().size() > 0){
 			parameters += "?";
 		for (Map.Entry<String, String[]> e : responseMap.entrySet()) {
-				parameters += e.getKey() + "=" + e.getValue()[0] + "&";
+		    	parameters += e.getKey() + "=" + e.getValue()[0].replace(" ", "%20") + "&";
 			}
 		}
+
 		try {
 			if(request.getHeader("Authorization") == null) {
 				response.getWriter().append("{\"status\": \"Unauthorized\"}");
 				response.setStatus(401);
 			}else{
-				authResponse = RestCaller.restCaller(request.getHeader("Authorization"), request.getRequestURI().replace(request.getContextPath(), "") + parameters, "GET", request.getHeader("Content-Type") ,"");
+				authResponse = RestCaller.restCaller(request.getHeader("Authorization"), request.getRequestURI().replace(request.getContextPath(), "").replace("/otd", "") + parameters, "GET", request.getHeader("Content-Type") ,"");
 				response.setStatus(Integer.parseInt(authResponse[0]));
 				response.getWriter().append(authResponse[1]);
 			}

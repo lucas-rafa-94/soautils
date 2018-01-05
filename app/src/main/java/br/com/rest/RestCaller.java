@@ -23,8 +23,7 @@ public class RestCaller {
 	    	    client.addFilter(authFilter);
 	    	       webResource = client.
 	                    resource(Helper.URI_SERVER + uri);
-			 System.out.println(Helper.URI_SERVER + uri);
-	    	       if(method.equals("GET")) {
+			       if(method.equals("GET")) {
 	        	    response = webResource.accept(contentType)
 	                    .get(ClientResponse.class);
 	    	       }else if (method.equals("POST")) {
@@ -48,7 +47,6 @@ public class RestCaller {
 	   	                    .post(ClientResponse.class, payload);
 	    	    	   		}
 	    	       }
-
 	    	       output[0] = Integer.toString(response.getStatus());
 	               output[1] = Helper.callResponses(response);
 	         } catch (Exception e) {

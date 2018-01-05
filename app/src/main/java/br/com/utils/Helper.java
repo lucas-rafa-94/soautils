@@ -44,7 +44,6 @@ public class Helper {
 		else{
 	     	responsePayload =  response.getEntity(String.class);
         }
-	    
 	    return responsePayload;
 	}
 	
