@@ -7,7 +7,7 @@ import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 public class Helper {
 	
-	public final static String URI_SERVER = "http://oc-129-144-158-115.compute.oraclecloud.com";
+	public final static String URI_SERVER = "https://oc-129-150-70-222.compute.oraclecloud.com";
 	public static String [] returnCredentials(String auth) {
 		
 		String[] values = new String [2];
